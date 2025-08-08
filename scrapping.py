@@ -6,6 +6,7 @@ from selenium.webdriver.chromium.options import ChromiumOptions
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver import Chrome
+from logger import logger
 
 
 @dataclass
@@ -44,7 +45,7 @@ class Scraper:
             ]
         except NoSuchElementException:
             return []
-
+    @logger(path='get_title')
     def get_title(self) -> List[dict]:
         title_list = []
         for article in self._get_articles_list():
